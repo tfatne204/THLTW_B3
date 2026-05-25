@@ -1,0 +1,83 @@
+@model FatsitBikerMVC.Models.ProductViewModel
+
+@{
+    ViewData["Title"] = "Thêm sản phẩm mới";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card bg-dark text-white" style="border: 1px solid var(--border-color);">
+                <div class="card-header border-bottom border-secondary">
+                    <h3 class="mb-0"><i class="fas fa-plus-circle text-primary"></i> Thêm Sản Phẩm Mới</h3>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Create" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label asp-for="Name" class="form-label text-muted"></label>
+                                <input asp-for="Name" class="form-control bg-dark text-white border-secondary" placeholder="Nhập tên xe..." />
+                                <span asp-validation-for="Name" class="text-danger small"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="CategoryId" class="form-label text-muted"></label>
+                                <select asp-for="CategoryId" class="form-select bg-dark text-white border-secondary" asp-items="ViewBag.Categories">
+                                    <option value="">-- Chọn danh mục --</option>
+                                </select>
+                                <span asp-validation-for="CategoryId" class="text-danger small"></span>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label asp-for="Price" class="form-label text-muted"></label>
+                                <input asp-for="Price" type="number" min="0" class="form-control bg-dark text-white border-secondary" placeholder="Ví dụ: 50000000" />
+                                <span asp-validation-for="Price" class="text-danger small"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="ImageUploads" class="form-label text-muted"></label>
+                                <input asp-for="ImageUploads" type="file" multiple accept="image/*" class="form-control bg-dark text-white border-secondary" />
+                                <span asp-validation-for="ImageUploads" class="text-danger small"></span>
+                                <small class="text-muted d-block mt-1">Chỉ nhận file ảnh (.jpg, .png...) và dưới 2MB. Cầm kéo nhiều ảnh hoặc Ctrl + Click.</small>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Desc" class="form-label text-muted"></label>
+                            <textarea asp-for="Desc" class="form-control bg-dark text-white border-secondary" rows="3" placeholder="Nhập mô tả xe..."></textarea>
+                            <span asp-validation-for="Desc" class="text-danger small"></span>
+                        </div>
+
+                        <h5 class="mt-4 mb-3 text-primary border-bottom border-secondary pb-2">Thông số kỹ thuật</h5>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <label asp-for="Engine" class="form-label text-muted"></label>
+                                <input asp-for="Engine" class="form-control bg-dark text-white border-secondary" />
+                            </div>
+                            <div class="col-md-4">
+                                <label asp-for="Power" class="form-label text-muted"></label>
+                                <input asp-for="Power" class="form-control bg-dark text-white border-secondary" />
+                            </div>
+                            <div class="col-md-4">
+                                <label asp-for="Weight" class="form-label text-muted"></label>
+                                <input asp-for="Weight" class="form-control bg-dark text-white border-secondary" />
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between mt-4">
+                            <a asp-action="Index" class="btn btn-outline-secondary">Hủy bỏ</a>
+                            <button type="submit" class="btn btn-primary px-5"><i class="fas fa-save"></i> Lưu Sản Phẩm</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

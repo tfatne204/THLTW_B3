@@ -1,0 +1,59 @@
+@model FatsitBikerMVC.Models.Category
+
+@{
+    ViewData["Title"] = "Xóa Danh mục";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="text-danger">Xác nhận Xóa</h2>
+                <a asp-action="Index" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Quay lại</a>
+            </div>
+
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger">
+                    <i class="fas fa-exclamation-triangle me-2"></i> @TempData["ErrorMessage"]
+                </div>
+            }
+
+            <div class="bg-dark p-4 rounded shadow border border-danger">
+                <h4 class="text-white mb-4">Bạn có chắc chắn muốn xóa danh mục này không?</h4>
+                <div class="card bg-dark text-white border-secondary mb-4">
+                    <div class="card-body">
+                        <dl class="row mb-0">
+                            <dt class="col-sm-3 text-warning">ID</dt>
+                            <dd class="col-sm-9">#@Model.Id</dd>
+
+                            <dt class="col-sm-3 text-warning">Tên Danh mục</dt>
+                            <dd class="col-sm-9 fw-bold fs-5">@Model.Name</dd>
+
+                            <dt class="col-sm-3 text-warning">Số lượng SP</dt>
+                            <dd class="col-sm-9">
+                                <span class="badge bg-info text-dark">@(Model.Products?.Count ?? 0)</span>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+
+                <form asp-action="Delete" method="post">
+                    <input type="hidden" asp-for="Id" />
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a asp-action="Index" class="btn btn-secondary me-md-2">Hủy bỏ</a>
+                        @if (Model.Products == null || !Model.Products.Any())
+                        {
+                            <button type="submit" class="btn btn-danger"><i class="fas fa-trash me-2"></i> Xóa vĩnh viễn</button>
+                        }
+                        else
+                        {
+                            <button type="button" class="btn btn-danger disabled"><i class="fas fa-ban me-2"></i> Không thể xóa</button>
+                            <div class="form-text text-danger mt-2 w-100 text-end">Vui lòng xóa hoặc di chuyển các sản phẩm thuộc danh mục này trước.</div>
+                        }
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

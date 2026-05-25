@@ -1,0 +1,89 @@
+@model IEnumerable<FatsitBikerMVC.Models.Product>
+@{
+    ViewData["Title"] = "Trang chủ";
+}
+
+<!-- BANNER CHÍNH -->
+<header class="hero-section text-center" style="background-image: url('https://s1storage.2banh.vn/image/2023/05/sh350i-duoc-khai-thac-triet-de-suc-manh-voi-bai-do-po-xang-lua-9130-1684749967-646b3e8f722e2.jpg');">
+    <div class="container position-relative z-1">
+        <h1 class="hero-title text-white">Fatsit Biker</h1>
+        <p class="lead mb-4 text-light">Đại lý xe máy Chính hãng uy tín hàng đầu Việt Nam.</p>
+    </div>
+</header>
+
+<!-- KHU VỰC SẢN PHẨM -->
+<main class="container py-5" id="products">
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+        <h2 class="section-title mb-0">DANH SÁCH XE</h2>
+        
+        <div class="dropdown">
+            <button class="btn btn-outline-primary dropdown-toggle" type="button" id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-sort-amount-down"></i> Sắp xếp theo giá
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="sortDropdown">
+                <li><a class="dropdown-item @(ViewBag.CurrentSort == "price_asc" ? "active" : "")" asp-action="Index" asp-route-sortOrder="price_asc">Giá: Thấp đến Cao</a></li>
+                <li><a class="dropdown-item @(ViewBag.CurrentSort == "price_desc" ? "active" : "")" asp-action="Index" asp-route-sortOrder="price_desc">Giá: Cao đến Thấp</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item @(string.IsNullOrEmpty(ViewBag.CurrentSort) ? "active" : "")" asp-action="Index" asp-route-sortOrder="">Mặc định</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Tab buttons -->
+    <ul class="nav nav-pills justify-content-center mb-5" id="productTabs" role="tablist">
+        <li class="nav-item">
+            <button class="nav-link active" id="tayga-tab" data-bs-toggle="pill" data-bs-target="#tayga" type="button">XE TAY GA</button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" id="xeso-tab" data-bs-toggle="pill" data-bs-target="#xeso" type="button">XE SỐ</button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" id="contay-tab" data-bs-toggle="pill" data-bs-target="#contay" type="button">XE CÔN TAY</button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" id="xedien-tab" data-bs-toggle="pill" data-bs-target="#xedien" type="button">XE ĐIỆN</button>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="productTabsContent">
+        @{ 
+            var catMappings = new[] { 
+                (id: "tayga", name: "Xe tay ga", catId: 1), 
+                (id: "xeso", name: "Xe số", catId: 2), 
+                (id: "contay", name: "Xe côn tay", catId: 3), 
+                (id: "xedien", name: "Xe điện", catId: 4) 
+            };
+        }
+        @foreach (var cat in catMappings)
+        {
+            <div class="tab-pane fade @(cat.id == "tayga" ? "show active" : "")" id="@cat.id" role="tabpanel">
+                <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4">
+                    @foreach (var product in Model.Where(p => p.Category?.Name == cat.name).Take(12))
+                    {
+                        <!-- Định dạng giá tiền -->
+                        long priceValue;
+                        string formattedPrice = "Liên hệ";
+                        if(long.TryParse(product.Price, out priceValue)) {
+                            formattedPrice = string.Format("{0:N0}", priceValue).Replace(",", ".") + " vnđ";
+                        } else {
+                            formattedPrice = product.Price + " vnđ";
+                        }
+
+                        <div class="col">
+                            <a asp-controller="Product" asp-action="Detail" asp-route-id="@product.Id" class="card h-100 text-center">
+                                <img src="@(product.Images != null && product.Images.Count > 0 ? product.Images[0] : "https://via.placeholder.com/800")" class="card-img-top" alt="@product.Name" onerror="this.src='https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=800&q=80'">
+                                <div class="card-body">
+                                    <h5 class="card-title">@product.Name</h5>
+                                    <div class="product-price fw-bold text-danger">@formattedPrice</div>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                </div>
+                <div class="text-center mt-5">
+                    <a asp-controller="Product" asp-action="List" asp-route-categoryId="@cat.catId" class="btn btn-outline-warning rounded-pill px-5 py-2 fw-bold">Xem tất cả sản phẩm</a>
+                </div>
+            </div>
+        }
+    </div>
+</main>

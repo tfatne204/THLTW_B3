@@ -1,0 +1,70 @@
+@model IEnumerable<FatsitBikerMVC.Models.Product>
+
+@{
+    ViewData["Title"] = "Quản lý sản phẩm";
+}
+
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-white">Danh sách Sản phẩm</h2>
+        <a asp-action="Create" class="btn btn-primary"><i class="fas fa-plus"></i> Thêm xe mới</a>
+    </div>
+
+    <div class="table-responsive bg-dark p-3 rounded" style="border: 1px solid var(--border-color);">
+        <table class="table table-dark table-hover align-middle">
+            <thead>
+                <tr>
+                    <th>Hình ảnh</th>
+                    <th>Tên xe</th>
+                    <th>Danh mục</th>
+                    <th>
+                        <a asp-action="Index" asp-route-sortOrder="@ViewBag.PriceSortParam" class="text-white text-decoration-none">
+                            Giá 
+                            @if (ViewBag.CurrentSort == "price_asc") { <i class="fas fa-sort-up"></i> }
+                            else if (ViewBag.CurrentSort == "price_desc") { <i class="fas fa-sort-down"></i> }
+                            else { <i class="fas fa-sort text-muted"></i> }
+                        </a>
+                    </th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @if (item.Images != null && item.Images.Count > 0)
+                            {
+                                <img src="@item.Images[0]" alt="@item.Name" style="width: 80px; height: 60px; object-fit: cover; border-radius: 5px;" onerror="this.src='https://via.placeholder.com/80x60?text=Error'" />
+                            }
+                        </td>
+                        <td class="fw-bold">@item.Name</td>
+                        <td>
+                            <span>@item.Category?.Name</span>
+                        </td>
+                        @{
+                            long priceValue;
+                            string formattedPrice = "Liên hệ";
+                            if(long.TryParse(item.Price, out priceValue)) {
+                                formattedPrice = string.Format("{0:N0}", priceValue).Replace(",", ".") + " vnđ";
+                            } else {
+                                formattedPrice = item.Price + " vnđ";
+                            }
+                        }
+                        <td class="text-primary fw-bold">@formattedPrice</td>
+                        <td>
+                            <a asp-action="Update" asp-route-id="@item.Id" class="btn btn-sm btn-warning me-2"><i class="fas fa-edit"></i> Sửa</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Xóa</a>
+                        </td>
+                    </tr>
+                }
+                @if (!Model.Any())
+                {
+                    <tr>
+                        <td colspan="5" class="text-center text-muted py-4">Chưa có sản phẩm nào.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

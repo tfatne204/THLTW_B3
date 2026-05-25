@@ -1,0 +1,36 @@
+@model FatsitBikerMVC.Models.Category
+
+@{
+    ViewData["Title"] = "Thêm Danh mục";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="text-white">Thêm Danh mục Mới</h2>
+                <a asp-action="Index" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Quay lại</a>
+            </div>
+
+            <div class="bg-dark p-4 rounded shadow" style="border: 1px solid var(--border-color);">
+                <form asp-action="Create" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                    
+                    <div class="mb-4">
+                        <label asp-for="Name" class="form-label text-warning fw-bold">Tên Danh mục</label>
+                        <input asp-for="Name" class="form-control bg-dark text-white border-secondary" placeholder="Nhập tên danh mục (vd: Xe Tay Ga)" required />
+                        <span asp-validation-for="Name" class="text-danger small"></span>
+                    </div>
+
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg fw-bold"><i class="fas fa-save me-2"></i> Lưu Danh Mục</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

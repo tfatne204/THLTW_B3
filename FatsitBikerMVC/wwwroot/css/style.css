@@ -1,0 +1,211 @@
+/* ==========================================================================
+   THIẾT KẾ GIAO DIỆN FATSIT BIKER (DARK MODE)
+   ========================================================================== */
+
+/* 1. Import font chữ hiện đại từ Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+/* 2. KHAI BÁO BIẾN (VARIABLES): Giúp quản lý màu sắc tập trung, dễ thay đổi */
+:root {
+    --primary-color: #e50000;    /* Màu đỏ Honda đặc trưng */
+    --primary-hover: #ff1a1a;    /* Màu đỏ khi di chuột vào nút */
+    --secondary-color: #ffffff;  /* Chữ chính màu trắng tinh */
+    --text-muted: #cccccc;       /* Chữ phụ màu xám sáng */
+    --card-bg: #1a1a1a;          /* Nền của thẻ sản phẩm */
+    --body-bg: #0b0b0b;          /* Nền toàn trang web (Đen sâu hơn) */
+    --border-color: #444444;     /* Màu viền thẻ sáng hơn một chút để thấy khung */
+    --header-bg: #000000;        /* Nền thanh điều hướng (Đen tuyệt đối) */
+}
+
+/* 3. CÀI ĐẶT CƠ BẢN (BASE STYLES) */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--body-bg);
+    color: var(--secondary-color);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased; /* Giúp chữ trên nền tối trông sắc nét hơn */
+}
+
+/* Ép màu cho class text-muted của Bootstrap để không bị mờ trên nền tối */
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
+/* 4. THANH TOP BAR (Phần nhỏ trên cùng chứa Hotline) */
+.top-bar {
+    background-color: #111;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    padding: 5px 0;
+    border-bottom: 1px solid #222;
+}
+.top-bar a {
+    color: var(--text-muted);
+    text-decoration: none;
+    margin-right: 15px;
+}
+
+/* 5. THANH ĐIỀU HƯỚNG (HEADER NAVBAR) */
+.navbar {
+    background-color: var(--header-bg) !important;
+    border-bottom: 3px solid var(--primary-color); /* Vạch đỏ to dưới Menu đặc trưng của Honda */
+    padding: 15px 0;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    color: var(--primary-color) !important;
+    font-size: 2rem;
+    letter-spacing: 1px;
+}
+
+.nav-link {
+    color: var(--secondary-color) !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 1rem;
+}
+
+/* Hiệu ứng hover cho Menu Sản Phẩm (Tự mở khi di chuột) */
+@media (min-width: 992px) {
+    .dropdown:hover .dropdown-menu {
+        display: block;
+        margin-top: 0;
+    }
+}
+
+/* 6. BANNER CHÍNH (HERO SECTION) */
+.hero-section {
+    padding: 160px 0;
+    background-size: cover;
+    background-attachment: fixed; /* Tạo hiệu ứng Parallax (Ảnh đứng yên khi cuộn trang) */
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Lớp phủ Gradient mờ cho Banner để chữ nổi bật và hòa vào nền đen */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(15,15,15,1));
+}
+
+.hero-title {
+    font-size: 5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    text-shadow: 0 5px 15px rgba(0,0,0,0.8);
+}
+
+/* 7. DANH MỤC SẢN PHẨM (TABS) */
+.nav-pills .nav-link {
+    color: var(--secondary-color);
+    font-weight: 600;
+    font-size: 1.2rem;
+    border-bottom: 3px solid transparent;
+    border-radius: 0;
+}
+.nav-pills .nav-link.active, .nav-pills .nav-link:hover {
+    background: transparent;
+    color: var(--primary-color);
+    border-bottom: 3px solid var(--primary-color);
+}
+
+/* 8. THẺ SẢN PHẨM (PRODUCT CARDS) */
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+/* Hiệu ứng nhấc lên và tỏa sáng đỏ khi di chuột vào xe */
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(229, 0, 0, 0.4);
+    border-color: var(--primary-color);
+}
+
+.card-img-top {
+    height: 220px;
+    width: 100%;
+    object-fit: cover; /* Giúp ảnh lấp đầy khung mà không bị méo */
+    background-color: #000; /* Nền đen để hòa hợp với Dark Mode */
+}
+
+.card-title {
+    color: #ffffff !important;   /* Đảm bảo tên xe luôn có màu trắng tinh */
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.product-price {
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin-top: 5px;
+}
+
+/* 9. NÚT LIÊN HỆ NỔI (FLOATING BUTTONS) */
+.floating-contact {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-item {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s;
+}
+
+/* Hiệu ứng rung nhịp tim cho nút gọi điện */
+.contact-phone {
+    background: var(--primary-color);
+    animation: pulse-red 2s infinite;
+}
+
+@keyframes pulse-red {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(229, 0, 0, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(229, 0, 0, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(229, 0, 0, 0); }
+}
+
+/* Tùy chỉnh riêng cho trang chi tiết */
+#main-img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover; /* Ảnh to ở trang chi tiết cũng sẽ lấp đầy khung */
+    border-radius: 10px;
+}
+
+.thumb-img {
+    width: 100px;
+    height: 75px;
+    object-fit: cover; /* Ảnh nhỏ lấp đầy khung */
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    opacity: 0.6;
+    transition: 0.3s;
+}
+.thumb-img:hover, .thumb-img.active {
+    opacity: 1;
+    border-color: var(--primary-color);
+}
+
