@@ -1,0 +1,36 @@
+@{
+    if (ViewData.TryGetValue("ParentLayout", out var parentLayout) && parentLayout != null)
+    {
+        Layout = parentLayout.ToString();
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml"; // Always use main app layout
+    }
+}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card bg-dark text-white border-secondary shadow-lg rounded-4">
+                <div class="card-header border-bottom border-secondary py-4 bg-black bg-opacity-25 rounded-top-4">
+                    <h2 class="fw-bold mb-0 text-warning text-center">⚙️ Quản Lý Tài Khoản</h2>
+                </div>
+                <div class="card-body p-0">
+                    <div class="row g-0">
+                        <div class="col-md-3 border-end border-secondary bg-black bg-opacity-10 p-4 rounded-start-4">
+                            <partial name="_ManageNav" />
+                        </div>
+                        <div class="col-md-9 p-4 p-md-5">
+                            @RenderBody()
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @RenderSection("Scripts", required: false)
+}

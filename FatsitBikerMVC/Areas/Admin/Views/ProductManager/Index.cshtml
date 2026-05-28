@@ -33,9 +33,9 @@
                 {
                     <tr>
                         <td>
-                            @if (item.Images != null && item.Images.Count > 0)
+                            @if (item.ProductImages != null && item.ProductImages.Count > 0)
                             {
-                                <img src="@item.Images[0]" alt="@item.Name" style="width: 80px; height: 60px; object-fit: cover; border-radius: 5px;" onerror="this.src='https://via.placeholder.com/80x60?text=Error'" />
+                                <img src="@item.ProductImages.FirstOrDefault()?.ImageUrl" alt="@item.Name" style="width: 80px; height: 60px; object-fit: cover; border-radius: 5px;" onerror="this.src='https://via.placeholder.com/80x60?text=Error'" />
                             }
                         </td>
                         <td class="fw-bold">@item.Name</td>

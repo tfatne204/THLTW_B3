@@ -4,12 +4,15 @@ using System.Linq;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FatsitBikerMVC.Models;
 
-namespace FatsitBikerMVC.Controllers
+namespace FatsitBikerMVC.Areas.Admin.Controllers
 {
+    [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class ProductManagerController : Controller
     {
         private readonly IWebHostEnvironment _webHostEnvironment;
@@ -26,7 +29,7 @@ namespace FatsitBikerMVC.Controllers
             ViewBag.CurrentSort = sortOrder;
             ViewBag.PriceSortParam = sortOrder == "price_asc" ? "price_desc" : "price_asc";
 
-            var products = _context.Products.Include(p => p.Category).AsEnumerable();
+            var products = _context.Products.Include(p => p.Category).Include(p => p.ProductImages).AsEnumerable();
 
             switch (sortOrder)
             {
@@ -80,9 +83,9 @@ namespace FatsitBikerMVC.Controllers
                     Engine = model.Engine,
                     Power = model.Power,
                     Weight = model.Weight,
-                    Images = uniqueFileNames.Count > 0 
-                                ? uniqueFileNames.Select(name => "/images/products/" + name).ToList() 
-                                : new List<string> { "https://images.unsplash.com/photo-1558981403-c5f9899a28bc" }
+                    ProductImages = uniqueFileNames.Count > 0 
+                                ? uniqueFileNames.Select(name => new ProductImage { ImageUrl = "/images/products/" + name }).ToList() 
+                                : new List<ProductImage> { new ProductImage { ImageUrl = "https://images.unsplash.com/photo-1558981403-c5f9899a28bc" } }
                 };
 
                 _context.Products.Add(newProduct);
@@ -95,7 +98,7 @@ namespace FatsitBikerMVC.Controllers
 
         public IActionResult Update(int id)
         {
-            var product = _context.Products.FirstOrDefault(p => p.Id == id);
+            var product = _context.Products.Include(p => p.ProductImages).FirstOrDefault(p => p.Id == id);
             if (product == null)
             {
                 return NotFound();
@@ -111,7 +114,7 @@ namespace FatsitBikerMVC.Controllers
                 Engine = product.Engine,
                 Power = product.Power,
                 Weight = product.Weight,
-                ExistingImages = product.Images
+                ExistingImages = product.ProductImages.ToList()
             };
 
             ViewBag.Categories = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
@@ -129,7 +132,7 @@ namespace FatsitBikerMVC.Controllers
 
             if (ModelState.IsValid)
             {
-                var product = _context.Products.FirstOrDefault(p => p.Id == model.Id);
+                var product = _context.Products.Include(p => p.ProductImages).FirstOrDefault(p => p.Id == model.Id);
                 if (product == null)
                 {
                     return NotFound();
@@ -145,7 +148,8 @@ namespace FatsitBikerMVC.Controllers
 
                 if (model.ImagesToDelete != null && model.ImagesToDelete.Count > 0)
                 {
-                    product.Images = product.Images.Where(img => !model.ImagesToDelete.Contains(img)).ToList();
+                    var imagesToRemove = product.ProductImages.Where(img => model.ImagesToDelete.Contains(img.Id)).ToList();
+                    _context.ProductImages.RemoveRange(imagesToRemove);
                 }
 
                 if (model.ImageUploads != null && model.ImageUploads.Count > 0)
@@ -157,9 +161,9 @@ namespace FatsitBikerMVC.Controllers
                         return View(model);
                     }
                     
-                    if (uniqueFileNames.Count > 0)
+                    foreach (var name in uniqueFileNames)
                     {
-                        product.Images.AddRange(uniqueFileNames.Select(name => "/images/products/" + name));
+                        product.ProductImages.Add(new ProductImage { ImageUrl = "/images/products/" + name });
                     }
                 }
 
@@ -172,7 +176,7 @@ namespace FatsitBikerMVC.Controllers
 
         public IActionResult Delete(int id)
         {
-            var product = _context.Products.Include(p => p.Category).FirstOrDefault(p => p.Id == id);
+            var product = _context.Products.Include(p => p.Category).Include(p => p.ProductImages).FirstOrDefault(p => p.Id == id);
             if (product == null)
             {
                 return NotFound();

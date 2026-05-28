@@ -4,6 +4,7 @@ using FatsitBikerMVC.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FatsitBikerMVC.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260525022406_UpdateApplicationUser")]
+    partial class UpdateApplicationUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -154,6 +157,10 @@ namespace FatsitBikerMVC.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.PrimitiveCollection<string>("Images")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -183,6 +190,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 1,
                             Desc = "Mô tả chi tiết cho Honda SH 150i",
                             Engine = "125cc",
+                            Images = "[\"https://images.unsplash.com/photo-1449426468159-d96dbf08f19f\",\"https://images.unsplash.com/photo-1615172282427-9a57ef2d142e\"]",
                             Name = "Honda SH 150i",
                             Power = "10 HP",
                             Price = "34000000",
@@ -194,6 +202,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 1,
                             Desc = "Mô tả chi tiết cho Honda Vision",
                             Engine = "125cc",
+                            Images = "[\"https://images.unsplash.com/photo-1558981403-c5f9899a28bc\",\"https://images.unsplash.com/photo-1558980394-0a37b363a516\"]",
                             Name = "Honda Vision",
                             Power = "10 HP",
                             Price = "34000000",
@@ -205,6 +214,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 1,
                             Desc = "Mô tả chi tiết cho Honda Air Blade",
                             Engine = "125cc",
+                            Images = "[\"https://images.unsplash.com/photo-1568772585407-9361f9bf3a87\",\"https://images.unsplash.com/photo-1558981359-219d6364c9c8\"]",
                             Name = "Honda Air Blade",
                             Power = "10 HP",
                             Price = "84000000",
@@ -216,6 +226,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 1,
                             Desc = "Mô tả chi tiết cho Honda Lead",
                             Engine = "125cc",
+                            Images = "[\"https://images.unsplash.com/photo-1449426468159-d96dbf08f19f\",\"https://images.unsplash.com/photo-1615172282427-9a57ef2d142e\"]",
                             Name = "Honda Lead",
                             Power = "10 HP",
                             Price = "65000000",
@@ -227,6 +238,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 1,
                             Desc = "Mô tả chi tiết cho Honda Vario",
                             Engine = "125cc",
+                            Images = "[\"https://images.unsplash.com/photo-1558981403-c5f9899a28bc\",\"https://images.unsplash.com/photo-1558980394-0a37b363a516\"]",
                             Name = "Honda Vario",
                             Power = "10 HP",
                             Price = "85000000",
@@ -238,6 +250,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 1,
                             Desc = "Mô tả chi tiết cho Yamaha NVX",
                             Engine = "125cc",
+                            Images = "[\"https://images.unsplash.com/photo-1568772585407-9361f9bf3a87\",\"https://images.unsplash.com/photo-1558981359-219d6364c9c8\"]",
                             Name = "Yamaha NVX",
                             Power = "10 HP",
                             Price = "87000000",
@@ -249,6 +262,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 1,
                             Desc = "Mô tả chi tiết cho Yamaha Grande",
                             Engine = "125cc",
+                            Images = "[\"https://images.unsplash.com/photo-1449426468159-d96dbf08f19f\",\"https://images.unsplash.com/photo-1615172282427-9a57ef2d142e\"]",
                             Name = "Yamaha Grande",
                             Power = "10 HP",
                             Price = "41000000",
@@ -260,6 +274,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 1,
                             Desc = "Mô tả chi tiết cho Yamaha Latte",
                             Engine = "125cc",
+                            Images = "[\"https://images.unsplash.com/photo-1558981403-c5f9899a28bc\",\"https://images.unsplash.com/photo-1558980394-0a37b363a516\"]",
                             Name = "Yamaha Latte",
                             Power = "10 HP",
                             Price = "81000000",
@@ -271,6 +286,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 1,
                             Desc = "Mô tả chi tiết cho Yamaha FreeGo",
                             Engine = "125cc",
+                            Images = "[\"https://images.unsplash.com/photo-1568772585407-9361f9bf3a87\",\"https://images.unsplash.com/photo-1558981359-219d6364c9c8\"]",
                             Name = "Yamaha FreeGo",
                             Power = "10 HP",
                             Price = "48000000",
@@ -282,6 +298,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 1,
                             Desc = "Mô tả chi tiết cho Vespa Sprint",
                             Engine = "125cc",
+                            Images = "[\"https://images.unsplash.com/photo-1449426468159-d96dbf08f19f\",\"https://images.unsplash.com/photo-1615172282427-9a57ef2d142e\"]",
                             Name = "Vespa Sprint",
                             Power = "10 HP",
                             Price = "65000000",
@@ -293,6 +310,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 1,
                             Desc = "Mô tả chi tiết cho Vespa Primavera",
                             Engine = "125cc",
+                            Images = "[\"https://images.unsplash.com/photo-1558981403-c5f9899a28bc\",\"https://images.unsplash.com/photo-1558980394-0a37b363a516\"]",
                             Name = "Vespa Primavera",
                             Power = "10 HP",
                             Price = "46000000",
@@ -304,6 +322,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 1,
                             Desc = "Mô tả chi tiết cho Piaggio Medley",
                             Engine = "125cc",
+                            Images = "[\"https://images.unsplash.com/photo-1568772585407-9361f9bf3a87\",\"https://images.unsplash.com/photo-1558981359-219d6364c9c8\"]",
                             Name = "Piaggio Medley",
                             Power = "10 HP",
                             Price = "57000000",
@@ -315,6 +334,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 1,
                             Desc = "Mô tả chi tiết cho Piaggio Liberty",
                             Engine = "125cc",
+                            Images = "[\"https://images.unsplash.com/photo-1449426468159-d96dbf08f19f\",\"https://images.unsplash.com/photo-1615172282427-9a57ef2d142e\"]",
                             Name = "Piaggio Liberty",
                             Power = "10 HP",
                             Price = "45000000",
@@ -326,6 +346,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 2,
                             Desc = "Mô tả chi tiết cho Honda Wave Alpha",
                             Engine = "110cc",
+                            Images = "[\"https://images.unsplash.com/photo-1558981403-c5f9899a28bc\",\"https://images.unsplash.com/photo-1558980394-0a37b363a516\"]",
                             Name = "Honda Wave Alpha",
                             Power = "8 HP",
                             Price = "15000000",
@@ -337,6 +358,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 2,
                             Desc = "Mô tả chi tiết cho Honda Wave RSX",
                             Engine = "110cc",
+                            Images = "[\"https://images.unsplash.com/photo-1568772585407-9361f9bf3a87\",\"https://images.unsplash.com/photo-1558981359-219d6364c9c8\"]",
                             Name = "Honda Wave RSX",
                             Power = "8 HP",
                             Price = "18000000",
@@ -348,6 +370,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 2,
                             Desc = "Mô tả chi tiết cho Honda Blade",
                             Engine = "110cc",
+                            Images = "[\"https://images.unsplash.com/photo-1449426468159-d96dbf08f19f\",\"https://images.unsplash.com/photo-1615172282427-9a57ef2d142e\"]",
                             Name = "Honda Blade",
                             Power = "8 HP",
                             Price = "33000000",
@@ -359,6 +382,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 2,
                             Desc = "Mô tả chi tiết cho Honda Future",
                             Engine = "110cc",
+                            Images = "[\"https://images.unsplash.com/photo-1558981403-c5f9899a28bc\",\"https://images.unsplash.com/photo-1558980394-0a37b363a516\"]",
                             Name = "Honda Future",
                             Power = "8 HP",
                             Price = "19000000",
@@ -370,6 +394,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 2,
                             Desc = "Mô tả chi tiết cho Yamaha Sirius",
                             Engine = "110cc",
+                            Images = "[\"https://images.unsplash.com/photo-1568772585407-9361f9bf3a87\",\"https://images.unsplash.com/photo-1558981359-219d6364c9c8\"]",
                             Name = "Yamaha Sirius",
                             Power = "8 HP",
                             Price = "37000000",
@@ -381,6 +406,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 2,
                             Desc = "Mô tả chi tiết cho Yamaha Jupiter",
                             Engine = "110cc",
+                            Images = "[\"https://images.unsplash.com/photo-1449426468159-d96dbf08f19f\",\"https://images.unsplash.com/photo-1615172282427-9a57ef2d142e\"]",
                             Name = "Yamaha Jupiter",
                             Power = "8 HP",
                             Price = "36000000",
@@ -392,6 +418,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 2,
                             Desc = "Mô tả chi tiết cho SYM Elegant",
                             Engine = "110cc",
+                            Images = "[\"https://images.unsplash.com/photo-1558981403-c5f9899a28bc\",\"https://images.unsplash.com/photo-1558980394-0a37b363a516\"]",
                             Name = "SYM Elegant",
                             Power = "8 HP",
                             Price = "23000000",
@@ -403,6 +430,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 2,
                             Desc = "Mô tả chi tiết cho SYM Galaxy",
                             Engine = "110cc",
+                            Images = "[\"https://images.unsplash.com/photo-1568772585407-9361f9bf3a87\",\"https://images.unsplash.com/photo-1558981359-219d6364c9c8\"]",
                             Name = "SYM Galaxy",
                             Power = "8 HP",
                             Price = "17000000",
@@ -414,6 +442,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 2,
                             Desc = "Mô tả chi tiết cho Honda Super Cub",
                             Engine = "110cc",
+                            Images = "[\"https://images.unsplash.com/photo-1449426468159-d96dbf08f19f\",\"https://images.unsplash.com/photo-1615172282427-9a57ef2d142e\"]",
                             Name = "Honda Super Cub",
                             Power = "8 HP",
                             Price = "28000000",
@@ -425,6 +454,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 2,
                             Desc = "Mô tả chi tiết cho Yamaha Finn",
                             Engine = "110cc",
+                            Images = "[\"https://images.unsplash.com/photo-1558981403-c5f9899a28bc\",\"https://images.unsplash.com/photo-1558980394-0a37b363a516\"]",
                             Name = "Yamaha Finn",
                             Power = "8 HP",
                             Price = "23000000",
@@ -436,6 +466,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 2,
                             Desc = "Mô tả chi tiết cho SYM Angela",
                             Engine = "110cc",
+                            Images = "[\"https://images.unsplash.com/photo-1568772585407-9361f9bf3a87\",\"https://images.unsplash.com/photo-1558981359-219d6364c9c8\"]",
                             Name = "SYM Angela",
                             Power = "8 HP",
                             Price = "32000000",
@@ -447,6 +478,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 2,
                             Desc = "Mô tả chi tiết cho SYM Star SR",
                             Engine = "110cc",
+                            Images = "[\"https://images.unsplash.com/photo-1449426468159-d96dbf08f19f\",\"https://images.unsplash.com/photo-1615172282427-9a57ef2d142e\"]",
                             Name = "SYM Star SR",
                             Power = "8 HP",
                             Price = "29000000",
@@ -458,6 +490,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 3,
                             Desc = "Mô tả chi tiết cho Yamaha Exciter 155",
                             Engine = "150cc - 1000cc",
+                            Images = "[\"https://images.unsplash.com/photo-1558981403-c5f9899a28bc\",\"https://images.unsplash.com/photo-1558980394-0a37b363a516\"]",
                             Name = "Yamaha Exciter 155",
                             Power = "15 - 200 HP",
                             Price = "327000000",
@@ -469,6 +502,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 3,
                             Desc = "Mô tả chi tiết cho Honda Winner X",
                             Engine = "150cc - 1000cc",
+                            Images = "[\"https://images.unsplash.com/photo-1568772585407-9361f9bf3a87\",\"https://images.unsplash.com/photo-1558981359-219d6364c9c8\"]",
                             Name = "Honda Winner X",
                             Power = "15 - 200 HP",
                             Price = "378000000",
@@ -480,6 +514,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 3,
                             Desc = "Mô tả chi tiết cho Suzuki Raider",
                             Engine = "150cc - 1000cc",
+                            Images = "[\"https://images.unsplash.com/photo-1449426468159-d96dbf08f19f\",\"https://images.unsplash.com/photo-1615172282427-9a57ef2d142e\"]",
                             Name = "Suzuki Raider",
                             Power = "15 - 200 HP",
                             Price = "385000000",
@@ -491,6 +526,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 3,
                             Desc = "Mô tả chi tiết cho Suzuki Satria",
                             Engine = "150cc - 1000cc",
+                            Images = "[\"https://images.unsplash.com/photo-1558981403-c5f9899a28bc\",\"https://images.unsplash.com/photo-1558980394-0a37b363a516\"]",
                             Name = "Suzuki Satria",
                             Power = "15 - 200 HP",
                             Price = "225000000",
@@ -502,6 +538,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 3,
                             Desc = "Mô tả chi tiết cho Yamaha MT-15",
                             Engine = "150cc - 1000cc",
+                            Images = "[\"https://images.unsplash.com/photo-1568772585407-9361f9bf3a87\",\"https://images.unsplash.com/photo-1558981359-219d6364c9c8\"]",
                             Name = "Yamaha MT-15",
                             Power = "15 - 200 HP",
                             Price = "156000000",
@@ -513,6 +550,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 3,
                             Desc = "Mô tả chi tiết cho Honda CBR150R",
                             Engine = "150cc - 1000cc",
+                            Images = "[\"https://images.unsplash.com/photo-1449426468159-d96dbf08f19f\",\"https://images.unsplash.com/photo-1615172282427-9a57ef2d142e\"]",
                             Name = "Honda CBR150R",
                             Power = "15 - 200 HP",
                             Price = "357000000",
@@ -524,6 +562,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 3,
                             Desc = "Mô tả chi tiết cho Yamaha R15",
                             Engine = "150cc - 1000cc",
+                            Images = "[\"https://images.unsplash.com/photo-1558981403-c5f9899a28bc\",\"https://images.unsplash.com/photo-1558980394-0a37b363a516\"]",
                             Name = "Yamaha R15",
                             Power = "15 - 200 HP",
                             Price = "140000000",
@@ -535,6 +574,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 3,
                             Desc = "Mô tả chi tiết cho Suzuki GSX-R150",
                             Engine = "150cc - 1000cc",
+                            Images = "[\"https://images.unsplash.com/photo-1568772585407-9361f9bf3a87\",\"https://images.unsplash.com/photo-1558981359-219d6364c9c8\"]",
                             Name = "Suzuki GSX-R150",
                             Power = "15 - 200 HP",
                             Price = "280000000",
@@ -546,6 +586,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 3,
                             Desc = "Mô tả chi tiết cho Honda MSX 125",
                             Engine = "150cc - 1000cc",
+                            Images = "[\"https://images.unsplash.com/photo-1449426468159-d96dbf08f19f\",\"https://images.unsplash.com/photo-1615172282427-9a57ef2d142e\"]",
                             Name = "Honda MSX 125",
                             Power = "15 - 200 HP",
                             Price = "265000000",
@@ -557,6 +598,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 3,
                             Desc = "Mô tả chi tiết cho Kawasaki Z1000",
                             Engine = "150cc - 1000cc",
+                            Images = "[\"https://images.unsplash.com/photo-1558981403-c5f9899a28bc\",\"https://images.unsplash.com/photo-1558980394-0a37b363a516\"]",
                             Name = "Kawasaki Z1000",
                             Power = "15 - 200 HP",
                             Price = "160000000",
@@ -568,6 +610,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 3,
                             Desc = "Mô tả chi tiết cho Ducati Panigale",
                             Engine = "150cc - 1000cc",
+                            Images = "[\"https://images.unsplash.com/photo-1568772585407-9361f9bf3a87\",\"https://images.unsplash.com/photo-1558981359-219d6364c9c8\"]",
                             Name = "Ducati Panigale",
                             Power = "15 - 200 HP",
                             Price = "395000000",
@@ -579,6 +622,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 3,
                             Desc = "Mô tả chi tiết cho Yamaha MT-09",
                             Engine = "150cc - 1000cc",
+                            Images = "[\"https://images.unsplash.com/photo-1449426468159-d96dbf08f19f\",\"https://images.unsplash.com/photo-1615172282427-9a57ef2d142e\"]",
                             Name = "Yamaha MT-09",
                             Power = "15 - 200 HP",
                             Price = "46000000",
@@ -590,6 +634,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 4,
                             Desc = "Mô tả chi tiết cho VinFast Feliz S",
                             Engine = "Điện",
+                            Images = "[\"https://images.unsplash.com/photo-1558981403-c5f9899a28bc\",\"https://images.unsplash.com/photo-1558980394-0a37b363a516\"]",
                             Name = "VinFast Feliz S",
                             Power = "1000W - 3000W",
                             Price = "41000000",
@@ -601,6 +646,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 4,
                             Desc = "Mô tả chi tiết cho VinFast Klara S",
                             Engine = "Điện",
+                            Images = "[\"https://images.unsplash.com/photo-1568772585407-9361f9bf3a87\",\"https://images.unsplash.com/photo-1558981359-219d6364c9c8\"]",
                             Name = "VinFast Klara S",
                             Power = "1000W - 3000W",
                             Price = "39000000",
@@ -612,6 +658,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 4,
                             Desc = "Mô tả chi tiết cho VinFast Vento S",
                             Engine = "Điện",
+                            Images = "[\"https://images.unsplash.com/photo-1449426468159-d96dbf08f19f\",\"https://images.unsplash.com/photo-1615172282427-9a57ef2d142e\"]",
                             Name = "VinFast Vento S",
                             Power = "1000W - 3000W",
                             Price = "41000000",
@@ -623,6 +670,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 4,
                             Desc = "Mô tả chi tiết cho VinFast Theon S",
                             Engine = "Điện",
+                            Images = "[\"https://images.unsplash.com/photo-1558981403-c5f9899a28bc\",\"https://images.unsplash.com/photo-1558980394-0a37b363a516\"]",
                             Name = "VinFast Theon S",
                             Power = "1000W - 3000W",
                             Price = "54000000",
@@ -634,6 +682,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 4,
                             Desc = "Mô tả chi tiết cho VinFast Evo 200",
                             Engine = "Điện",
+                            Images = "[\"https://images.unsplash.com/photo-1568772585407-9361f9bf3a87\",\"https://images.unsplash.com/photo-1558981359-219d6364c9c8\"]",
                             Name = "VinFast Evo 200",
                             Power = "1000W - 3000W",
                             Price = "39000000",
@@ -645,6 +694,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 4,
                             Desc = "Mô tả chi tiết cho Yadea Odora",
                             Engine = "Điện",
+                            Images = "[\"https://images.unsplash.com/photo-1449426468159-d96dbf08f19f\",\"https://images.unsplash.com/photo-1615172282427-9a57ef2d142e\"]",
                             Name = "Yadea Odora",
                             Power = "1000W - 3000W",
                             Price = "29000000",
@@ -656,6 +706,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 4,
                             Desc = "Mô tả chi tiết cho Yadea Xmen",
                             Engine = "Điện",
+                            Images = "[\"https://images.unsplash.com/photo-1558981403-c5f9899a28bc\",\"https://images.unsplash.com/photo-1558980394-0a37b363a516\"]",
                             Name = "Yadea Xmen",
                             Power = "1000W - 3000W",
                             Price = "30000000",
@@ -667,6 +718,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 4,
                             Desc = "Mô tả chi tiết cho Pega S",
                             Engine = "Điện",
+                            Images = "[\"https://images.unsplash.com/photo-1568772585407-9361f9bf3a87\",\"https://images.unsplash.com/photo-1558981359-219d6364c9c8\"]",
                             Name = "Pega S",
                             Power = "1000W - 3000W",
                             Price = "49000000",
@@ -678,6 +730,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 4,
                             Desc = "Mô tả chi tiết cho Dat Bike Weaver",
                             Engine = "Điện",
+                            Images = "[\"https://images.unsplash.com/photo-1449426468159-d96dbf08f19f\",\"https://images.unsplash.com/photo-1615172282427-9a57ef2d142e\"]",
                             Name = "Dat Bike Weaver",
                             Power = "1000W - 3000W",
                             Price = "31000000",
@@ -689,6 +742,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 4,
                             Desc = "Mô tả chi tiết cho Dat Bike Weaver 200",
                             Engine = "Điện",
+                            Images = "[\"https://images.unsplash.com/photo-1558981403-c5f9899a28bc\",\"https://images.unsplash.com/photo-1558980394-0a37b363a516\"]",
                             Name = "Dat Bike Weaver 200",
                             Power = "1000W - 3000W",
                             Price = "35000000",
@@ -700,6 +754,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 4,
                             Desc = "Mô tả chi tiết cho Dat Bike Weaver++",
                             Engine = "Điện",
+                            Images = "[\"https://images.unsplash.com/photo-1568772585407-9361f9bf3a87\",\"https://images.unsplash.com/photo-1558981359-219d6364c9c8\"]",
                             Name = "Dat Bike Weaver++",
                             Power = "1000W - 3000W",
                             Price = "61000000",
@@ -711,6 +766,7 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 4,
                             Desc = "Mô tả chi tiết cho Yadea Ulike",
                             Engine = "Điện",
+                            Images = "[\"https://images.unsplash.com/photo-1449426468159-d96dbf08f19f\",\"https://images.unsplash.com/photo-1615172282427-9a57ef2d142e\"]",
                             Name = "Yadea Ulike",
                             Power = "1000W - 3000W",
                             Price = "24000000",
@@ -722,634 +778,11 @@ namespace FatsitBikerMVC.Migrations
                             CategoryId = 4,
                             Desc = "Mô tả chi tiết cho Dibao Gogo",
                             Engine = "Điện",
+                            Images = "[\"https://images.unsplash.com/photo-1558981403-c5f9899a28bc\",\"https://images.unsplash.com/photo-1558980394-0a37b363a516\"]",
                             Name = "Dibao Gogo",
                             Power = "1000W - 3000W",
                             Price = "61000000",
                             Weight = "90 - 120 kg"
-                        });
-                });
-
-            modelBuilder.Entity("FatsitBikerMVC.Models.ProductImage", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductImages");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ImageUrl = "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87",
-                            ProductId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            ImageUrl = "https://images.unsplash.com/photo-1558981359-219d6364c9c8",
-                            ProductId = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            ImageUrl = "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f",
-                            ProductId = 2
-                        },
-                        new
-                        {
-                            Id = 4,
-                            ImageUrl = "https://images.unsplash.com/photo-1615172282427-9a57ef2d142e",
-                            ProductId = 2
-                        },
-                        new
-                        {
-                            Id = 5,
-                            ImageUrl = "https://images.unsplash.com/photo-1558981403-c5f9899a28bc",
-                            ProductId = 3
-                        },
-                        new
-                        {
-                            Id = 6,
-                            ImageUrl = "https://images.unsplash.com/photo-1558980394-0a37b363a516",
-                            ProductId = 3
-                        },
-                        new
-                        {
-                            Id = 7,
-                            ImageUrl = "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87",
-                            ProductId = 4
-                        },
-                        new
-                        {
-                            Id = 8,
-                            ImageUrl = "https://images.unsplash.com/photo-1558981359-219d6364c9c8",
-                            ProductId = 4
-                        },
-                        new
-                        {
-                            Id = 9,
-                            ImageUrl = "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f",
-                            ProductId = 5
-                        },
-                        new
-                        {
-                            Id = 10,
-                            ImageUrl = "https://images.unsplash.com/photo-1615172282427-9a57ef2d142e",
-                            ProductId = 5
-                        },
-                        new
-                        {
-                            Id = 11,
-                            ImageUrl = "https://images.unsplash.com/photo-1558981403-c5f9899a28bc",
-                            ProductId = 6
-                        },
-                        new
-                        {
-                            Id = 12,
-                            ImageUrl = "https://images.unsplash.com/photo-1558980394-0a37b363a516",
-                            ProductId = 6
-                        },
-                        new
-                        {
-                            Id = 13,
-                            ImageUrl = "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87",
-                            ProductId = 7
-                        },
-                        new
-                        {
-                            Id = 14,
-                            ImageUrl = "https://images.unsplash.com/photo-1558981359-219d6364c9c8",
-                            ProductId = 7
-                        },
-                        new
-                        {
-                            Id = 15,
-                            ImageUrl = "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f",
-                            ProductId = 8
-                        },
-                        new
-                        {
-                            Id = 16,
-                            ImageUrl = "https://images.unsplash.com/photo-1615172282427-9a57ef2d142e",
-                            ProductId = 8
-                        },
-                        new
-                        {
-                            Id = 17,
-                            ImageUrl = "https://images.unsplash.com/photo-1558981403-c5f9899a28bc",
-                            ProductId = 9
-                        },
-                        new
-                        {
-                            Id = 18,
-                            ImageUrl = "https://images.unsplash.com/photo-1558980394-0a37b363a516",
-                            ProductId = 9
-                        },
-                        new
-                        {
-                            Id = 19,
-                            ImageUrl = "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87",
-                            ProductId = 10
-                        },
-                        new
-                        {
-                            Id = 20,
-                            ImageUrl = "https://images.unsplash.com/photo-1558981359-219d6364c9c8",
-                            ProductId = 10
-                        },
-                        new
-                        {
-                            Id = 21,
-                            ImageUrl = "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f",
-                            ProductId = 11
-                        },
-                        new
-                        {
-                            Id = 22,
-                            ImageUrl = "https://images.unsplash.com/photo-1615172282427-9a57ef2d142e",
-                            ProductId = 11
-                        },
-                        new
-                        {
-                            Id = 23,
-                            ImageUrl = "https://images.unsplash.com/photo-1558981403-c5f9899a28bc",
-                            ProductId = 12
-                        },
-                        new
-                        {
-                            Id = 24,
-                            ImageUrl = "https://images.unsplash.com/photo-1558980394-0a37b363a516",
-                            ProductId = 12
-                        },
-                        new
-                        {
-                            Id = 25,
-                            ImageUrl = "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87",
-                            ProductId = 13
-                        },
-                        new
-                        {
-                            Id = 26,
-                            ImageUrl = "https://images.unsplash.com/photo-1558981359-219d6364c9c8",
-                            ProductId = 13
-                        },
-                        new
-                        {
-                            Id = 27,
-                            ImageUrl = "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f",
-                            ProductId = 14
-                        },
-                        new
-                        {
-                            Id = 28,
-                            ImageUrl = "https://images.unsplash.com/photo-1615172282427-9a57ef2d142e",
-                            ProductId = 14
-                        },
-                        new
-                        {
-                            Id = 29,
-                            ImageUrl = "https://images.unsplash.com/photo-1558981403-c5f9899a28bc",
-                            ProductId = 15
-                        },
-                        new
-                        {
-                            Id = 30,
-                            ImageUrl = "https://images.unsplash.com/photo-1558980394-0a37b363a516",
-                            ProductId = 15
-                        },
-                        new
-                        {
-                            Id = 31,
-                            ImageUrl = "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87",
-                            ProductId = 16
-                        },
-                        new
-                        {
-                            Id = 32,
-                            ImageUrl = "https://images.unsplash.com/photo-1558981359-219d6364c9c8",
-                            ProductId = 16
-                        },
-                        new
-                        {
-                            Id = 33,
-                            ImageUrl = "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f",
-                            ProductId = 17
-                        },
-                        new
-                        {
-                            Id = 34,
-                            ImageUrl = "https://images.unsplash.com/photo-1615172282427-9a57ef2d142e",
-                            ProductId = 17
-                        },
-                        new
-                        {
-                            Id = 35,
-                            ImageUrl = "https://images.unsplash.com/photo-1558981403-c5f9899a28bc",
-                            ProductId = 18
-                        },
-                        new
-                        {
-                            Id = 36,
-                            ImageUrl = "https://images.unsplash.com/photo-1558980394-0a37b363a516",
-                            ProductId = 18
-                        },
-                        new
-                        {
-                            Id = 37,
-                            ImageUrl = "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87",
-                            ProductId = 19
-                        },
-                        new
-                        {
-                            Id = 38,
-                            ImageUrl = "https://images.unsplash.com/photo-1558981359-219d6364c9c8",
-                            ProductId = 19
-                        },
-                        new
-                        {
-                            Id = 39,
-                            ImageUrl = "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f",
-                            ProductId = 20
-                        },
-                        new
-                        {
-                            Id = 40,
-                            ImageUrl = "https://images.unsplash.com/photo-1615172282427-9a57ef2d142e",
-                            ProductId = 20
-                        },
-                        new
-                        {
-                            Id = 41,
-                            ImageUrl = "https://images.unsplash.com/photo-1558981403-c5f9899a28bc",
-                            ProductId = 21
-                        },
-                        new
-                        {
-                            Id = 42,
-                            ImageUrl = "https://images.unsplash.com/photo-1558980394-0a37b363a516",
-                            ProductId = 21
-                        },
-                        new
-                        {
-                            Id = 43,
-                            ImageUrl = "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87",
-                            ProductId = 22
-                        },
-                        new
-                        {
-                            Id = 44,
-                            ImageUrl = "https://images.unsplash.com/photo-1558981359-219d6364c9c8",
-                            ProductId = 22
-                        },
-                        new
-                        {
-                            Id = 45,
-                            ImageUrl = "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f",
-                            ProductId = 23
-                        },
-                        new
-                        {
-                            Id = 46,
-                            ImageUrl = "https://images.unsplash.com/photo-1615172282427-9a57ef2d142e",
-                            ProductId = 23
-                        },
-                        new
-                        {
-                            Id = 47,
-                            ImageUrl = "https://images.unsplash.com/photo-1558981403-c5f9899a28bc",
-                            ProductId = 24
-                        },
-                        new
-                        {
-                            Id = 48,
-                            ImageUrl = "https://images.unsplash.com/photo-1558980394-0a37b363a516",
-                            ProductId = 24
-                        },
-                        new
-                        {
-                            Id = 49,
-                            ImageUrl = "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87",
-                            ProductId = 25
-                        },
-                        new
-                        {
-                            Id = 50,
-                            ImageUrl = "https://images.unsplash.com/photo-1558981359-219d6364c9c8",
-                            ProductId = 25
-                        },
-                        new
-                        {
-                            Id = 51,
-                            ImageUrl = "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f",
-                            ProductId = 26
-                        },
-                        new
-                        {
-                            Id = 52,
-                            ImageUrl = "https://images.unsplash.com/photo-1615172282427-9a57ef2d142e",
-                            ProductId = 26
-                        },
-                        new
-                        {
-                            Id = 53,
-                            ImageUrl = "https://images.unsplash.com/photo-1558981403-c5f9899a28bc",
-                            ProductId = 27
-                        },
-                        new
-                        {
-                            Id = 54,
-                            ImageUrl = "https://images.unsplash.com/photo-1558980394-0a37b363a516",
-                            ProductId = 27
-                        },
-                        new
-                        {
-                            Id = 55,
-                            ImageUrl = "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87",
-                            ProductId = 28
-                        },
-                        new
-                        {
-                            Id = 56,
-                            ImageUrl = "https://images.unsplash.com/photo-1558981359-219d6364c9c8",
-                            ProductId = 28
-                        },
-                        new
-                        {
-                            Id = 57,
-                            ImageUrl = "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f",
-                            ProductId = 29
-                        },
-                        new
-                        {
-                            Id = 58,
-                            ImageUrl = "https://images.unsplash.com/photo-1615172282427-9a57ef2d142e",
-                            ProductId = 29
-                        },
-                        new
-                        {
-                            Id = 59,
-                            ImageUrl = "https://images.unsplash.com/photo-1558981403-c5f9899a28bc",
-                            ProductId = 30
-                        },
-                        new
-                        {
-                            Id = 60,
-                            ImageUrl = "https://images.unsplash.com/photo-1558980394-0a37b363a516",
-                            ProductId = 30
-                        },
-                        new
-                        {
-                            Id = 61,
-                            ImageUrl = "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87",
-                            ProductId = 31
-                        },
-                        new
-                        {
-                            Id = 62,
-                            ImageUrl = "https://images.unsplash.com/photo-1558981359-219d6364c9c8",
-                            ProductId = 31
-                        },
-                        new
-                        {
-                            Id = 63,
-                            ImageUrl = "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f",
-                            ProductId = 32
-                        },
-                        new
-                        {
-                            Id = 64,
-                            ImageUrl = "https://images.unsplash.com/photo-1615172282427-9a57ef2d142e",
-                            ProductId = 32
-                        },
-                        new
-                        {
-                            Id = 65,
-                            ImageUrl = "https://images.unsplash.com/photo-1558981403-c5f9899a28bc",
-                            ProductId = 33
-                        },
-                        new
-                        {
-                            Id = 66,
-                            ImageUrl = "https://images.unsplash.com/photo-1558980394-0a37b363a516",
-                            ProductId = 33
-                        },
-                        new
-                        {
-                            Id = 67,
-                            ImageUrl = "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87",
-                            ProductId = 34
-                        },
-                        new
-                        {
-                            Id = 68,
-                            ImageUrl = "https://images.unsplash.com/photo-1558981359-219d6364c9c8",
-                            ProductId = 34
-                        },
-                        new
-                        {
-                            Id = 69,
-                            ImageUrl = "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f",
-                            ProductId = 35
-                        },
-                        new
-                        {
-                            Id = 70,
-                            ImageUrl = "https://images.unsplash.com/photo-1615172282427-9a57ef2d142e",
-                            ProductId = 35
-                        },
-                        new
-                        {
-                            Id = 71,
-                            ImageUrl = "https://images.unsplash.com/photo-1558981403-c5f9899a28bc",
-                            ProductId = 36
-                        },
-                        new
-                        {
-                            Id = 72,
-                            ImageUrl = "https://images.unsplash.com/photo-1558980394-0a37b363a516",
-                            ProductId = 36
-                        },
-                        new
-                        {
-                            Id = 73,
-                            ImageUrl = "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87",
-                            ProductId = 37
-                        },
-                        new
-                        {
-                            Id = 74,
-                            ImageUrl = "https://images.unsplash.com/photo-1558981359-219d6364c9c8",
-                            ProductId = 37
-                        },
-                        new
-                        {
-                            Id = 75,
-                            ImageUrl = "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f",
-                            ProductId = 38
-                        },
-                        new
-                        {
-                            Id = 76,
-                            ImageUrl = "https://images.unsplash.com/photo-1615172282427-9a57ef2d142e",
-                            ProductId = 38
-                        },
-                        new
-                        {
-                            Id = 77,
-                            ImageUrl = "https://images.unsplash.com/photo-1558981403-c5f9899a28bc",
-                            ProductId = 39
-                        },
-                        new
-                        {
-                            Id = 78,
-                            ImageUrl = "https://images.unsplash.com/photo-1558980394-0a37b363a516",
-                            ProductId = 39
-                        },
-                        new
-                        {
-                            Id = 79,
-                            ImageUrl = "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87",
-                            ProductId = 40
-                        },
-                        new
-                        {
-                            Id = 80,
-                            ImageUrl = "https://images.unsplash.com/photo-1558981359-219d6364c9c8",
-                            ProductId = 40
-                        },
-                        new
-                        {
-                            Id = 81,
-                            ImageUrl = "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f",
-                            ProductId = 41
-                        },
-                        new
-                        {
-                            Id = 82,
-                            ImageUrl = "https://images.unsplash.com/photo-1615172282427-9a57ef2d142e",
-                            ProductId = 41
-                        },
-                        new
-                        {
-                            Id = 83,
-                            ImageUrl = "https://images.unsplash.com/photo-1558981403-c5f9899a28bc",
-                            ProductId = 42
-                        },
-                        new
-                        {
-                            Id = 84,
-                            ImageUrl = "https://images.unsplash.com/photo-1558980394-0a37b363a516",
-                            ProductId = 42
-                        },
-                        new
-                        {
-                            Id = 85,
-                            ImageUrl = "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87",
-                            ProductId = 43
-                        },
-                        new
-                        {
-                            Id = 86,
-                            ImageUrl = "https://images.unsplash.com/photo-1558981359-219d6364c9c8",
-                            ProductId = 43
-                        },
-                        new
-                        {
-                            Id = 87,
-                            ImageUrl = "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f",
-                            ProductId = 44
-                        },
-                        new
-                        {
-                            Id = 88,
-                            ImageUrl = "https://images.unsplash.com/photo-1615172282427-9a57ef2d142e",
-                            ProductId = 44
-                        },
-                        new
-                        {
-                            Id = 89,
-                            ImageUrl = "https://images.unsplash.com/photo-1558981403-c5f9899a28bc",
-                            ProductId = 45
-                        },
-                        new
-                        {
-                            Id = 90,
-                            ImageUrl = "https://images.unsplash.com/photo-1558980394-0a37b363a516",
-                            ProductId = 45
-                        },
-                        new
-                        {
-                            Id = 91,
-                            ImageUrl = "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87",
-                            ProductId = 46
-                        },
-                        new
-                        {
-                            Id = 92,
-                            ImageUrl = "https://images.unsplash.com/photo-1558981359-219d6364c9c8",
-                            ProductId = 46
-                        },
-                        new
-                        {
-                            Id = 93,
-                            ImageUrl = "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f",
-                            ProductId = 47
-                        },
-                        new
-                        {
-                            Id = 94,
-                            ImageUrl = "https://images.unsplash.com/photo-1615172282427-9a57ef2d142e",
-                            ProductId = 47
-                        },
-                        new
-                        {
-                            Id = 95,
-                            ImageUrl = "https://images.unsplash.com/photo-1558981403-c5f9899a28bc",
-                            ProductId = 48
-                        },
-                        new
-                        {
-                            Id = 96,
-                            ImageUrl = "https://images.unsplash.com/photo-1558980394-0a37b363a516",
-                            ProductId = 48
-                        },
-                        new
-                        {
-                            Id = 97,
-                            ImageUrl = "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87",
-                            ProductId = 49
-                        },
-                        new
-                        {
-                            Id = 98,
-                            ImageUrl = "https://images.unsplash.com/photo-1558981359-219d6364c9c8",
-                            ProductId = 49
-                        },
-                        new
-                        {
-                            Id = 99,
-                            ImageUrl = "https://images.unsplash.com/photo-1449426468159-d96dbf08f19f",
-                            ProductId = 50
-                        },
-                        new
-                        {
-                            Id = 100,
-                            ImageUrl = "https://images.unsplash.com/photo-1615172282427-9a57ef2d142e",
-                            ProductId = 50
                         });
                 });
 
@@ -1433,10 +866,12 @@ namespace FatsitBikerMVC.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -1473,10 +908,12 @@ namespace FatsitBikerMVC.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -1495,17 +932,6 @@ namespace FatsitBikerMVC.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("FatsitBikerMVC.Models.ProductImage", b =>
-                {
-                    b.HasOne("FatsitBikerMVC.Models.Product", "Product")
-                        .WithMany("ProductImages")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -1562,11 +988,6 @@ namespace FatsitBikerMVC.Migrations
             modelBuilder.Entity("FatsitBikerMVC.Models.Category", b =>
                 {
                     b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("FatsitBikerMVC.Models.Product", b =>
-                {
-                    b.Navigation("ProductImages");
                 });
 #pragma warning restore 612, 618
         }

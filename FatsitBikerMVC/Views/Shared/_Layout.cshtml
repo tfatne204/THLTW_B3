@@ -30,7 +30,7 @@
     <!-- 2. HEADER / NAVBAR -->
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container align-items-center">
-            <a class="navbar-brand me-4" asp-controller="Home" asp-action="Index">
+            <a class="navbar-brand me-4" asp-area="" asp-controller="Home" asp-action="Index">
                 <i class="fab fa-honda"></i> FATSIT BIKER
             </a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -38,18 +38,18 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto align-items-center">
-                    <li class="nav-item me-3"><a class="nav-link" asp-controller="Home" asp-action="Index">Trang chủ</a></li>
+                    <li class="nav-item me-3"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Trang chủ</a></li>
                     <li class="nav-item dropdown me-3">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Sản phẩm
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" asp-controller="Product" asp-action="List" asp-route-categoryId="0">Tất cả xe</a></li>
+                            <li><a class="dropdown-item" asp-area="" asp-controller="Product" asp-action="List" asp-route-categoryId="0">Tất cả xe</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" asp-controller="Product" asp-action="List" asp-route-categoryId="1">Xe Tay Ga</a></li>
-                            <li><a class="dropdown-item" asp-controller="Product" asp-action="List" asp-route-categoryId="2">Xe Số</a></li>
-                            <li><a class="dropdown-item" asp-controller="Product" asp-action="List" asp-route-categoryId="3">Xe Côn Tay</a></li>
-                            <li><a class="dropdown-item" asp-controller="Product" asp-action="List" asp-route-categoryId="4">Xe Điện</a></li>
+                            <li><a class="dropdown-item" asp-area="" asp-controller="Product" asp-action="List" asp-route-categoryId="1">Xe Tay Ga</a></li>
+                            <li><a class="dropdown-item" asp-area="" asp-controller="Product" asp-action="List" asp-route-categoryId="2">Xe Số</a></li>
+                            <li><a class="dropdown-item" asp-area="" asp-controller="Product" asp-action="List" asp-route-categoryId="3">Xe Côn Tay</a></li>
+                            <li><a class="dropdown-item" asp-area="" asp-controller="Product" asp-action="List" asp-route-categoryId="4">Xe Điện</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown me-3">
@@ -57,21 +57,26 @@
                             Dịch vụ
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="servicesDropdown">
-                            <li><a class="dropdown-item" asp-controller="Services" asp-action="NanoCoating">Dịch vụ dán nano cho xe</a></li>
-                            <li><a class="dropdown-item" asp-controller="Services" asp-action="LoanSupport">Dịch vụ hỗ trợ cho vay mua xe</a></li>
-                            <li><a class="dropdown-item" asp-controller="Services" asp-action="Maintenance">Dịch vụ bảo dưỡng xe tận nơi</a></li>
+                            <li><a class="dropdown-item" asp-area="" asp-controller="Services" asp-action="NanoCoating">Dịch vụ dán nano cho xe</a></li>
+                            <li><a class="dropdown-item" asp-area="" asp-controller="Services" asp-action="LoanSupport">Dịch vụ hỗ trợ cho vay mua xe</a></li>
+                            <li><a class="dropdown-item" asp-area="" asp-controller="Services" asp-action="Maintenance">Dịch vụ bảo dưỡng xe tận nơi</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item me-3"><a class="nav-link" asp-controller="Home" asp-action="Stores">Cửa hàng</a></li>
-                    <li class="nav-item dropdown me-3">
-                        <a class="nav-link dropdown-toggle text-warning" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-cogs"></i> Quản trị
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="adminDropdown">
-                            <li><a class="dropdown-item" asp-controller="CategoryManager" asp-action="Index"><i class="fas fa-list-alt me-2 text-info"></i> Quản lý danh mục</a></li>
-                            <li><a class="dropdown-item" asp-controller="ProductManager" asp-action="Index"><i class="fas fa-motorcycle me-2 text-success"></i> Quản lý sản phẩm</a></li>
-                        </ul>
-                    </li>
+                    <li class="nav-item me-3"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Stores">Cửa hàng</a></li>
+                    @if (User.IsInRole(FatsitBikerMVC.Models.SD.Role_Admin))
+                    {
+                        <li class="nav-item dropdown me-3">
+                            <a class="nav-link dropdown-toggle text-warning" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-cogs"></i> Quản trị
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="adminDropdown">
+                                <li><a class="dropdown-item" asp-area="Admin" asp-controller="CategoryManager" asp-action="Index"><i class="fas fa-list-alt me-2 text-info"></i> Quản lý danh mục</a></li>
+                                <li><a class="dropdown-item" asp-area="Admin" asp-controller="ProductManager" asp-action="Index"><i class="fas fa-motorcycle me-2 text-success"></i> Quản lý sản phẩm</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" asp-area="Admin" asp-controller="UserManager" asp-action="Index"><i class="fas fa-users me-2 text-warning"></i> Quản lý người dùng</a></li>
+                            </ul>
+                        </li>
+                    }
                 </ul>
                 <div class="d-flex align-items-center gap-3">
                     <form asp-controller="Product" asp-action="List" method="get" class="input-group input-group-sm d-none d-md-flex" style="width: 200px;">
@@ -84,7 +89,7 @@
                         <i class="fas fa-shopping-cart"></i>
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.6rem;">0</span>
                     </a>
-                    <a href="#" class="text-white fs-5"><i class="fas fa-user-circle"></i></a>
+                    <partial name="_LoginPartial" />
                 </div>
             </div>
         </div>

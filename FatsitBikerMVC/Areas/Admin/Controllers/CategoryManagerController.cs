@@ -1,10 +1,13 @@
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using FatsitBikerMVC.Models;
 
-namespace FatsitBikerMVC.Controllers
+namespace FatsitBikerMVC.Areas.Admin.Controllers
 {
+    [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class CategoryManagerController : Controller
     {
         private readonly ApplicationDbContext _context;

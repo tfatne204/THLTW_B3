@@ -19,7 +19,7 @@ public class HomeController : Controller
     public IActionResult Index(string sortOrder)
     {
         ViewBag.CurrentSort = sortOrder;
-        var products = _context.Products.Include(p => p.Category).AsEnumerable();
+        var products = _context.Products.Include(p => p.Category).Include(p => p.ProductImages).AsEnumerable();
 
         switch (sortOrder)
         {

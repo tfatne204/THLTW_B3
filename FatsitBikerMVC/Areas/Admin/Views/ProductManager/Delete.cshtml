@@ -14,9 +14,9 @@
                 <div class="card-body text-center py-4">
                     <h5 class="mb-3">Bạn có chắc chắn muốn xóa sản phẩm này không?</h5>
                     
-                    @if (Model.Images != null && Model.Images.Count > 0)
+                    @if (Model.ProductImages != null && Model.ProductImages.Count > 0)
                     {
-                        <img src="@Model.Images.FirstOrDefault()" alt="@Model.Name" class="img-fluid rounded mb-3 border border-secondary" style="max-height: 200px;" />
+                        <img src="@Model.ProductImages.FirstOrDefault()?.ImageUrl" alt="@Model.Name" class="img-fluid rounded mb-3 border border-secondary" style="max-height: 200px;" />
                     }
                     
                     <h4 class="text-warning mb-2">@Model.Name</h4>

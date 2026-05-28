@@ -71,7 +71,7 @@
 
                         <div class="col">
                             <a asp-controller="Product" asp-action="Detail" asp-route-id="@product.Id" class="card h-100 text-center">
-                                <img src="@(product.Images != null && product.Images.Count > 0 ? product.Images[0] : "https://via.placeholder.com/800")" class="card-img-top" alt="@product.Name" onerror="this.src='https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=800&q=80'">
+                                <img src="@(product.ProductImages != null && product.ProductImages.Count > 0 ? product.ProductImages.FirstOrDefault()?.ImageUrl : "https://via.placeholder.com/800")" class="card-img-top" alt="@product.Name" onerror="this.src='https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=800&q=80'">
                                 <div class="card-body">
                                     <h5 class="card-title">@product.Name</h5>
                                     <div class="product-price fw-bold text-danger">@formattedPrice</div>

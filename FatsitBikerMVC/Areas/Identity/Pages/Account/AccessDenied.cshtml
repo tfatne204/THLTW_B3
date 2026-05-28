@@ -1,0 +1,34 @@
+@page
+@model AccessDeniedModel
+@{
+    ViewData["Title"] = "Từ chối truy cập";
+}
+
+<div class="container my-5 py-5">
+    <div class="row justify-content-center py-5">
+        <div class="col-md-6 text-center">
+            <div class="card bg-dark text-white border-danger shadow-lg rounded-4 p-5">
+                <div class="mb-4">
+                    <span class="display-1 text-danger">🛑</span>
+                </div>
+                <h1 class="fw-bold text-danger mb-3">TỪ CHỐI TRUY CẬP</h1>
+                <p class="fs-5 text-muted mb-4">Bạn không có quyền hạn truy cập vào khu vực quản trị này.</p>
+                <div class="d-flex justify-content-center gap-3">
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-warning px-4 py-2 rounded-pill fw-bold text-dark hover-zoom">
+                        🏠 Trang chủ
+                    </a>
+                    <a asp-page="./Login" class="btn btn-outline-light px-4 py-2 rounded-pill fw-semibold hover-zoom">
+                        🔑 Đăng nhập tài khoản khác
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .hover-zoom:hover {
+        transform: scale(1.02);
+        transition: all 0.2s ease-in-out;
+    }
+</style>

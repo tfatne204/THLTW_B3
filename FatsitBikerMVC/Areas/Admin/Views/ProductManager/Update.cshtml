@@ -19,7 +19,9 @@
                         {
                             for(int i = 0; i < Model.ExistingImages.Count; i++)
                             {
-                                <input type="hidden" asp-for="ExistingImages[i]" />
+                                <input type="hidden" asp-for="ExistingImages[i].Id" />
+                                <input type="hidden" asp-for="ExistingImages[i].ImageUrl" />
+                                <input type="hidden" asp-for="ExistingImages[i].ProductId" />
                             }
                         }
 
@@ -53,10 +55,10 @@
                                             @foreach(var img in Model.ExistingImages)
                                             {
                                                 <div class="text-center">
-                                                    <img src="@img" class="rounded border border-secondary" style="width: 100px; height: 100px; object-fit: cover;" />
+                                                    <img src="@img.ImageUrl" class="rounded border border-secondary" style="width: 100px; height: 100px; object-fit: cover;" />
                                                     <div class="form-check d-flex justify-content-center mt-2">
-                                                        <input class="form-check-input me-1 border-secondary" type="checkbox" name="ImagesToDelete" value="@img" id="del_@img.GetHashCode()">
-                                                        <label class="form-check-label small text-danger" for="del_@img.GetHashCode()">Xóa ảnh</label>
+                                                        <input class="form-check-input me-1 border-secondary" type="checkbox" name="ImagesToDelete" value="@img.Id" id="del_@img.Id">
+                                                        <label class="form-check-label small text-danger" for="del_@img.Id">Xóa ảnh</label>
                                                     </div>
                                                 </div>
                                             }

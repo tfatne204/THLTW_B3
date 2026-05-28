@@ -33,10 +33,10 @@ namespace FatsitBikerMVC.Models
         public string Weight { get; set; } = string.Empty;
 
         // Dùng để chứa ảnh hiện tại khi Edit
-        public List<string> ExistingImages { get; set; } = new List<string>();
+        public List<ProductImage> ExistingImages { get; set; } = new List<ProductImage>();
 
-        // Danh sách các ảnh cũ được chọn để xóa
-        public List<string> ImagesToDelete { get; set; } = new List<string>();
+        // Danh sách ID các ảnh cũ được chọn để xóa
+        public List<int> ImagesToDelete { get; set; } = new List<int>();
 
         // Dùng để nhận file upload từ người dùng
         [Display(Name = "Hình ảnh")]

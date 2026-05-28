@@ -1,0 +1,130 @@
+@model FatsitBikerMVC.Models.ApplicationUser
+@{
+    ViewData["Title"] = "Sửa Người dùng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card bg-dark text-white border-secondary shadow-lg rounded-4">
+                <div class="card-header border-bottom border-secondary text-center py-4 bg-black bg-opacity-25 rounded-top-4">
+                    <h2 class="fw-bold mb-0 text-warning">✏️ Cập Nhật Người Dùng</h2>
+                </div>
+                <div class="card-body p-4 p-md-5">
+                    <form asp-action="Edit" method="post">
+                        <input type="hidden" asp-for="Id" />
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <!-- Email (Read Only) -->
+                        <div class="form-floating mb-3">
+                            <input asp-for="Email" class="form-control bg-black text-secondary border-secondary" readonly />
+                            <label asp-for="Email" class="text-secondary">Email (Không thể thay đổi)</label>
+                        </div>
+
+                        <!-- FullName -->
+                        <div class="form-floating mb-3">
+                            <input asp-for="FullName" class="form-control bg-black text-white border-secondary" />
+                            <label asp-for="FullName" class="text-secondary">Họ và tên</label>
+                            <span asp-validation-for="FullName" class="text-danger"></span>
+                        </div>
+
+                        <!-- Address -->
+                        <div class="form-floating mb-3">
+                            <input asp-for="Address" class="form-control bg-black text-white border-secondary" />
+                            <label asp-for="Address" class="text-secondary">Địa chỉ</label>
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+
+                        <!-- Age & Role -->
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <div class="form-floating">
+                                    <input asp-for="Age" class="form-control bg-black text-white border-secondary" />
+                                    <label asp-for="Age" class="text-secondary">Tuổi</label>
+                                    <span asp-validation-for="Age" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="form-floating">
+                                    <input asp-for="PhoneNumber" class="form-control bg-black text-white border-secondary" />
+                                    <label asp-for="PhoneNumber" class="text-secondary">Số điện thoại</label>
+                                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Role & Password -->
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <div class="form-floating">
+                                    <select name="SelectedRole" asp-items="ViewBag.RoleList" class="form-select bg-black text-white border-secondary">
+                                        <option value="">-- Chọn vai trò --</option>
+                                    </select>
+                                    <label class="text-secondary">Vai trò</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="input-group h-100">
+                                    <div class="form-floating flex-grow-1">
+                                        <input name="NewPassword" type="password" class="form-control bg-black text-white border-secondary border-end-0 password-input h-100" placeholder="Đổi mật khẩu mới" />
+                                        <label class="text-secondary">Mật khẩu mới (Bỏ trống nếu không đổi)</label>
+                                    </div>
+                                    <span class="input-group-text bg-black border-secondary border-start-0 toggle-password" style="cursor: pointer; color: #ffc107;">
+                                        <i class="fas fa-eye"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex gap-2 mt-4">
+                            <button type="submit" class="btn btn-warning flex-grow-1 fw-bold py-3 rounded-3 shadow hover-zoom">
+                                <i class="fas fa-save me-1"></i> Lưu thay đổi
+                            </button>
+                            <a asp-action="Index" class="btn btn-outline-light py-3 px-4 rounded-3 shadow hover-zoom">
+                                <i class="fas fa-arrow-left me-1"></i> Trở về
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .form-control:focus, .form-select:focus {
+        background-color: #050505 !important;
+        border-color: #ffc107 !important;
+        color: #fff !important;
+        box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.25) !important;
+    }
+    .form-floating > .form-control:focus ~ label,
+    .form-floating > .form-control:not(:placeholder-shown) ~ label,
+    .form-floating > .form-select ~ label {
+        color: #ffc107 !important;
+    }
+    .hover-zoom:hover {
+        transform: scale(1.02);
+        transition: all 0.2s ease-in-out;
+    }
+</style>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        $(document).ready(function () {
+            $('.toggle-password').click(function () {
+                let input = $(this).prev('.form-floating').find('.password-input');
+                let icon = $(this).find('i');
+                if (input.attr('type') === 'password') {
+                    input.attr('type', 'text');
+                    icon.removeClass('fa-eye').addClass('fa-eye-slash');
+                } else {
+                    input.attr('type', 'password');
+                    icon.removeClass('fa-eye-slash').addClass('fa-eye');
+                }
+            });
+        });
+    </script>
+}

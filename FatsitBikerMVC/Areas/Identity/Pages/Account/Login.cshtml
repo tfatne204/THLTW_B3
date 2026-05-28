@@ -1,0 +1,100 @@
+@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Đăng nhập";
+}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card bg-dark text-white border-secondary shadow-lg rounded-4">
+                <div class="card-header border-bottom border-secondary text-center py-4 bg-black bg-opacity-25 rounded-top-4">
+                    <h2 class="fw-bold mb-0 text-warning">🔑 Đăng Nhập</h2>
+                    <p class="text-muted mb-0 mt-2">Đăng nhập tài khoản Fatsit Biker để tiếp tục mua sắm</p>
+                </div>
+                <div class="card-body p-4 p-md-5">
+                    <form id="account" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
+
+                        <!-- Email Input -->
+                        <div class="form-floating mb-3">
+                            <input asp-for="Input.Email" class="form-control bg-black text-white border-secondary" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                            <label asp-for="Input.Email" class="text-secondary">Email</label>
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        </div>
+
+                        <!-- Password Input -->
+                        <div class="input-group mb-3">
+                            <div class="form-floating flex-grow-1">
+                                <input asp-for="Input.Password" type="password" class="form-control bg-black text-white border-secondary border-end-0 password-input" autocomplete="current-password" aria-required="true" placeholder="Mật khẩu" />
+                                <label asp-for="Input.Password" class="text-secondary">Mật khẩu</label>
+                            </div>
+                            <span class="input-group-text bg-black border-secondary border-start-0 toggle-password" style="cursor: pointer; color: #ffc107;">
+                                <i class="fas fa-eye"></i>
+                            </span>
+                        </div>
+                        <span asp-validation-for="Input.Password" class="text-danger d-block mb-3" style="margin-top:-10px;"></span>
+
+                        <!-- Remember Me Checkbox -->
+                        <div class="checkbox mb-4 d-flex justify-content-between align-items-center">
+                            <label asp-for="Input.RememberMe" class="text-secondary cursor-pointer">
+                                <input class="form-check-input bg-black border-secondary me-2" asp-for="Input.RememberMe" />
+                                Ghi nhớ đăng nhập
+                            </label>
+                            <a id="forgot-password" asp-page="./ForgotPassword" class="text-warning text-decoration-none small">Quên mật khẩu?</a>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-warning fw-bold py-3 rounded-3 shadow hover-zoom">
+                            🔓 Đăng Nhập
+                        </button>
+                    </form>
+                </div>
+                <div class="card-footer border-top border-secondary text-center py-3 bg-black bg-opacity-10 rounded-bottom-4">
+                    <span class="text-muted">Chưa có tài khoản?</span>
+                    <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="text-warning text-decoration-none fw-bold ms-1">Đăng ký mới</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .form-control:focus {
+        background-color: #050505 !important;
+        border-color: #ffc107 !important;
+        color: #fff !important;
+        box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.25) !important;
+    }
+    .form-floating > .form-control:focus ~ label,
+    .form-floating > .form-control:not(:placeholder-shown) ~ label {
+        color: #ffc107 !important;
+    }
+    .cursor-pointer {
+        cursor: pointer;
+    }
+    .hover-zoom:hover {
+        transform: scale(1.02);
+        transition: all 0.2s ease-in-out;
+    }
+</style>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        $(document).ready(function () {
+            $('.toggle-password').click(function () {
+                let input = $(this).prev('.form-floating').find('.password-input');
+                let icon = $(this).find('i');
+                if (input.attr('type') === 'password') {
+                    input.attr('type', 'text');
+                    icon.removeClass('fa-eye').addClass('fa-eye-slash');
+                } else {
+                    input.attr('type', 'password');
+                    icon.removeClass('fa-eye-slash').addClass('fa-eye');
+                }
+            });
+        });
+    </script>
+}

@@ -17,7 +17,7 @@ namespace FatsitBikerMVC.Controllers
         public IActionResult List(int categoryId = 0, int page = 1, string sortOrder = "", string searchQuery = "")
         {
             int pageSize = 9;
-            var query = _context.Products.Include(p => p.Category).AsQueryable();
+            var query = _context.Products.Include(p => p.Category).Include(p => p.ProductImages).AsQueryable();
 
             if (!string.IsNullOrEmpty(searchQuery))
             {
@@ -70,7 +70,7 @@ namespace FatsitBikerMVC.Controllers
         // GET: /Product/Detail/{id}
         public IActionResult Detail(int id)
         {
-            var product = _context.Products.Include(p => p.Category).FirstOrDefault(p => p.Id == id);
+            var product = _context.Products.Include(p => p.Category).Include(p => p.ProductImages).FirstOrDefault(p => p.Id == id);
             if (product == null)
             {
                 return NotFound();
